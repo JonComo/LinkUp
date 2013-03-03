@@ -1,5 +1,5 @@
 //
-//  LUViewController.h
+//  LUSignInViewController.h
 //  LinkUp
 //
 //  Created by Jon Como on 3/2/13.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LUViewController : UIViewController
+@interface LUSignInViewController : UIViewController
 
 @end
