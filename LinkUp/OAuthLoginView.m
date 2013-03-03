@@ -135,7 +135,7 @@
 	NSURL *url = request.URL;
 	NSString *urlString = url.absoluteString;
     
-    addressBar.text = urlString;
+    //addressBar.text = urlString;
     [activityIndicator startAnimating];
     
     BOOL requestForCallbackURL = ([urlString rangeOfString:linkedInCallbackURL].location != NSNotFound);
@@ -207,12 +207,13 @@
         self.accessToken = [[OAToken alloc] initWithHTTPResponseBody:responseBody];
     }
     
-    // Notify parent and close this view
-    [[NSNotificationCenter defaultCenter] 
-     postNotificationName:@"loginViewDidFinish"        
-     object:self];
+    [self dismissViewControllerAnimated:YES completion:^{
+        // Notify parent and close this view
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:@"loginViewDidFinish"
+         object:self];
+    }];
     
-    [self dismissViewControllerAnimated:YES completion:nil];
     [responseBody release];
 }
 
@@ -243,7 +244,6 @@
 {
     [super viewDidLoad];
     [self initLinkedInApi];
-    [addressBar setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
 }
 
 - (void)viewDidAppear:(BOOL)animated

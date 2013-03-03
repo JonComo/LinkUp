@@ -7,6 +7,7 @@
 //
 
 #import "LUHomeViewController.h"
+#import "LUAuthorize.h"
 
 @interface LUHomeViewController ()
 
@@ -14,19 +15,22 @@
 
 @implementation LUHomeViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [[LUAuthorize sharedManager] authorizeWithLogin:NO delegate:self completion:^(BOOL success, NSDictionary *profile) {
+        if (!success)
+        {
+            [self performSegueWithIdentifier:@"signIn" sender:self];
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning

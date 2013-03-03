@@ -13,6 +13,6 @@ typedef void (^AuthorizeCompletion)(BOOL success, NSDictionary *profile);
 @interface LUAuthorize : NSObject
 
 +(id)sharedManager;
--(void)authorizeWithCompletion:(AuthorizeCompletion)block;
+-(void)authorizeWithLogin:(BOOL)login delegate:(id)delegate completion:(AuthorizeCompletion)block;
 
 @end

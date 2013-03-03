@@ -7,7 +7,6 @@
 //
 
 #import "LUAuthorize.h"
-#import "LUAppDelegate.h"
 #import "OAuthLoginView.h"
 
 const NSString *apiKey = @"cj2jjytw6ed5";
@@ -15,6 +14,8 @@ const NSString *secretKey = @"f03A0ArEBdNrTxA1";
 
 @implementation LUAuthorize
 {
+    __weak id delegateVC;
+    
     OAuthLoginView *oAuthLoginView;
     AuthorizeCompletion completionBlock;
     
@@ -35,9 +36,10 @@ const NSString *secretKey = @"f03A0ArEBdNrTxA1";
 }
 
 
--(void)authorizeWithCompletion:(AuthorizeCompletion)block
+-(void)authorizeWithLogin:(BOOL)login delegate:(id)delegate completion:(AuthorizeCompletion)block
 {
-    completionBlock = block;
+    delegateVC = delegate;
+    completionBlock = [block copy];
     
     consumer = [[OAConsumer alloc] initWithKey:apiKey secret:secretKey realm:@"http://api.linkedin.com/"];
     token = [[OAToken alloc] initWithUserDefaultsUsingServiceProviderName:@"linkedIn" prefix:@"LI"];
@@ -46,7 +48,12 @@ const NSString *secretKey = @"f03A0ArEBdNrTxA1";
     {
         [self profileApiCall];
     }else{
-        [self authorizeWithLogin];
+        if (login)
+        {
+            [self authorizeWithLogin];
+        }else{
+            if (completionBlock) completionBlock(NO, nil);
+        }
     }
 }
 
@@ -70,15 +77,15 @@ const NSString *secretKey = @"f03A0ArEBdNrTxA1";
 
 - (void)profileApiCallResult:(OAServiceTicket *)ticket didFinish:(NSData *)data
 {
-    NSDictionary *profile = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+    NSMutableDictionary *profile = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
     
-    if (profile && ![profile[@"status"] isEqual:@404])
+    if (profile)
     {
         token = oAuthLoginView.accessToken;
         [token storeInUserDefaultsWithServiceProviderName:@"linkedIn" prefix:@"LI"];
         
         if (completionBlock) completionBlock(YES, profile);
-        NSLog(@"Success: %@" , [profile objectForKey:@"firstName"]);
+        NSLog(@"Success: %@" , profile);
         //name.text = [[NSString alloc] initWithFormat:@"%@ %@",[profile objectForKey:@"firstName"], [profile objectForKey:@"lastName"]];
         //headline.text = [profile objectForKey:@"headline"];
     }
@@ -106,9 +113,12 @@ const NSString *secretKey = @"f03A0ArEBdNrTxA1";
                                                  name:@"loginViewDidFinish"
                                                object:oAuthLoginView];
     
-    LUAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-    
-    [appDelegate.window.rootViewController presentViewController:oAuthLoginView animated:YES completion:nil];
+    if ([delegateVC respondsToSelector:@selector(presentViewController:animated:completion:)])
+    {
+        [delegateVC presentViewController:oAuthLoginView animated:YES completion:nil];
+    }else{
+        if (completionBlock) completionBlock(NO, nil);
+    }
 }
 
 -(void)loginViewDidFinish:(NSNotification*)notification
@@ -143,8 +153,7 @@ const NSString *secretKey = @"f03A0ArEBdNrTxA1";
 
 - (void)networkApiCallResult:(OAServiceTicket *)ticket didFinish:(NSData *)data
 {
-    NSString *responseBody = [[NSString alloc] initWithData:data
-                                                   encoding:NSUTF8StringEncoding];
+    //NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     
     //NSDictionary *person = [[[[[responseBody objectFromJSONString] objectForKey:@"values"] objectAtIndex:0] objectForKey:@"updateContent"] objectForKey:@"person"];
     

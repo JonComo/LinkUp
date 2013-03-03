@@ -17,7 +17,6 @@
 {
     IBOutlet UIWebView *webView;
     IBOutlet UIActivityIndicatorView *activityIndicator;
-    IBOutlet UITextField *addressBar;
     
     OAToken *requestToken;
     OAToken *accessToken;

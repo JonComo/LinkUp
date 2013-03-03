@@ -7,8 +7,12 @@
 //
 
 #import "LUSignInViewController.h"
+#import "LUAuthorize.h"
 
 @interface LUSignInViewController ()
+{
+    
+}
 
 @end
 
@@ -33,6 +37,16 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)signIn:(id)sender
+{
+    [[LUAuthorize sharedManager] authorizeWithLogin:YES delegate:self completion:^(BOOL success, NSDictionary *profile) {
+        if (success && profile)
+        {
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
+    }];
 }
 
 @end
