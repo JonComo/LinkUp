@@ -7,6 +7,7 @@
 //
 
 #import "LUViewController.h"
+#import "LUAuthorize.h"
 
 @interface LUViewController ()
 
@@ -18,6 +19,15 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [[LUAuthorize sharedManager] authorizeWithCompletion:^(BOOL success, NSDictionary *profile) {
+        NSLog(@"Got a profile: %@", profile);
+    }];
 }
 
 - (void)didReceiveMemoryWarning
