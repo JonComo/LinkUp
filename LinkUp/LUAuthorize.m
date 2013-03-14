@@ -59,7 +59,7 @@ const NSString *secretKey = @"f03A0ArEBdNrTxA1";
 
 - (void)profileApiCall
 {
-    NSURL *url = [NSURL URLWithString:@"http://api.linkedin.com/v1/people/~"];
+    NSURL *url = [NSURL URLWithString:@"http://api.linkedin.com/v1/people/~:(id,first-name,last-name,industry)"];
     OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url
                                     consumer:consumer
                                        token:token

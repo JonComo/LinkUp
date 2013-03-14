@@ -22,6 +22,17 @@
 		863DF33716E2FCA3004D032A /* OAAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 863DF32916E2FCA3004D032A /* OAAttachment.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		863DF33A16E30097004D032A /* LUSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 863DF33916E30097004D032A /* LUSignInViewController.m */; };
 		863DF34016E30108004D032A /* LUHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 863DF33F16E30108004D032A /* LUHomeViewController.m */; };
+		8681390716F25A8700574C00 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8681390616F25A8700574C00 /* icon@2x.png */; };
+		8681390B16F25B4A00574C00 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8681390A16F25B4A00574C00 /* Parse.framework */; };
+		8681390D16F25B5F00574C00 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8681390C16F25B5F00574C00 /* AudioToolbox.framework */; };
+		8681390F16F25B6600574C00 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8681390E16F25B6600574C00 /* CFNetwork.framework */; };
+		8681391116F25B7100574C00 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8681391016F25B7100574C00 /* CoreLocation.framework */; };
+		8681391316F25B7800574C00 /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8681391216F25B7800574C00 /* libz.1.1.3.dylib */; };
+		8681391516F25B7F00574C00 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8681391416F25B7F00574C00 /* MobileCoreServices.framework */; };
+		8681391716F25B8400574C00 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8681391616F25B8400574C00 /* QuartzCore.framework */; };
+		8681391916F25B8A00574C00 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8681391816F25B8A00574C00 /* Security.framework */; };
+		8681391B16F25B8F00574C00 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8681391A16F25B8F00574C00 /* StoreKit.framework */; };
+		8681391D16F25B9400574C00 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8681391C16F25B9400574C00 /* SystemConfiguration.framework */; };
 		86C3E28C16E2E01C00011CBA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86C3E28B16E2E01C00011CBA /* UIKit.framework */; };
 		86C3E28E16E2E01C00011CBA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86C3E28D16E2E01C00011CBA /* Foundation.framework */; };
 		86C3E29016E2E01C00011CBA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86C3E28F16E2E01C00011CBA /* CoreGraphics.framework */; };
@@ -76,6 +87,17 @@
 		863DF33916E30097004D032A /* LUSignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LUSignInViewController.m; sourceTree = "<group>"; };
 		863DF33E16E30108004D032A /* LUHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LUHomeViewController.h; sourceTree = "<group>"; };
 		863DF33F16E30108004D032A /* LUHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LUHomeViewController.m; sourceTree = "<group>"; };
+		8681390616F25A8700574C00 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
+		8681390A16F25B4A00574C00 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		8681390C16F25B5F00574C00 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		8681390E16F25B6600574C00 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		8681391016F25B7100574C00 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		8681391216F25B7800574C00 /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = usr/lib/libz.1.1.3.dylib; sourceTree = SDKROOT; };
+		8681391416F25B7F00574C00 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		8681391616F25B8400574C00 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		8681391816F25B8A00574C00 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		8681391A16F25B8F00574C00 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		8681391C16F25B9400574C00 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		86C3E28816E2E01C00011CBA /* LinkUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LinkUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86C3E28B16E2E01C00011CBA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		86C3E28D16E2E01C00011CBA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -112,9 +134,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8681391D16F25B9400574C00 /* SystemConfiguration.framework in Frameworks */,
+				8681391B16F25B8F00574C00 /* StoreKit.framework in Frameworks */,
+				8681391916F25B8A00574C00 /* Security.framework in Frameworks */,
+				8681391716F25B8400574C00 /* QuartzCore.framework in Frameworks */,
+				8681391516F25B7F00574C00 /* MobileCoreServices.framework in Frameworks */,
+				8681391316F25B7800574C00 /* libz.1.1.3.dylib in Frameworks */,
+				8681391116F25B7100574C00 /* CoreLocation.framework in Frameworks */,
+				86C3E29016E2E01C00011CBA /* CoreGraphics.framework in Frameworks */,
+				8681390F16F25B6600574C00 /* CFNetwork.framework in Frameworks */,
+				8681390D16F25B5F00574C00 /* AudioToolbox.framework in Frameworks */,
 				86C3E28C16E2E01C00011CBA /* UIKit.framework in Frameworks */,
 				86C3E28E16E2E01C00011CBA /* Foundation.framework in Frameworks */,
-				86C3E29016E2E01C00011CBA /* CoreGraphics.framework in Frameworks */,
+				8681390B16F25B4A00574C00 /* Parse.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,6 +156,7 @@
 		86C3E27F16E2E01B00011CBA = {
 			isa = PBXGroup;
 			children = (
+				8681390616F25A8700574C00 /* icon@2x.png */,
 				86C3E29116E2E01C00011CBA /* LinkUp */,
 				86C3E28A16E2E01C00011CBA /* Frameworks */,
 				86C3E28916E2E01C00011CBA /* Products */,
@@ -141,6 +174,16 @@
 		86C3E28A16E2E01C00011CBA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8681391C16F25B9400574C00 /* SystemConfiguration.framework */,
+				8681391A16F25B8F00574C00 /* StoreKit.framework */,
+				8681391816F25B8A00574C00 /* Security.framework */,
+				8681391616F25B8400574C00 /* QuartzCore.framework */,
+				8681391416F25B7F00574C00 /* MobileCoreServices.framework */,
+				8681391216F25B7800574C00 /* libz.1.1.3.dylib */,
+				8681391016F25B7100574C00 /* CoreLocation.framework */,
+				8681390E16F25B6600574C00 /* CFNetwork.framework */,
+				8681390C16F25B5F00574C00 /* AudioToolbox.framework */,
+				8681390A16F25B4A00574C00 /* Parse.framework */,
 				86C3E28B16E2E01C00011CBA /* UIKit.framework */,
 				86C3E28D16E2E01C00011CBA /* Foundation.framework */,
 				86C3E28F16E2E01C00011CBA /* CoreGraphics.framework */,
@@ -311,6 +354,7 @@
 				86C3E2A216E2E01C00011CBA /* Default-568h@2x.png in Resources */,
 				86C3E2A516E2E01C00011CBA /* MainStoryboard.storyboard in Resources */,
 				86C3E31016E2EB0800011CBA /* OAuthLoginView.xib in Resources */,
+				8681390716F25A8700574C00 /* icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,6 +473,10 @@
 		86C3E2AC16E2E01C00011CBA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LinkUp/LinkUp-Prefix.pch";
 				INFOPLIST_FILE = "LinkUp/LinkUp-Info.plist";
@@ -440,6 +488,10 @@
 		86C3E2AD16E2E01C00011CBA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LinkUp/LinkUp-Prefix.pch";
 				INFOPLIST_FILE = "LinkUp/LinkUp-Info.plist";

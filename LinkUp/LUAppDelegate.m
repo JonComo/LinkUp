@@ -7,6 +7,7 @@
 //
 
 #import "LUAppDelegate.h"
+#import <Parse/Parse.h>
 
 @implementation LUAppDelegate
 
@@ -14,7 +15,8 @@
 {
     // Override point for customization after application launch.
     
-    
+    [Parse setApplicationId:@"eCRlx5awoO0H2ueSKwIX97BQJrhqML4chTBOV1WQ"
+                  clientKey:@"pZWVO76euOwi9f8fJzdQ3YmIbQ0UyxasynDZaO7E"];
     
     return YES;
 }
