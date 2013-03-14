@@ -11,7 +11,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "LUAuthorize.h"
 
-@interface LUHomeViewController ()
+@interface LUHomeViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 {
     NSDictionary *userProfile;
     PFGeoPoint *location;
@@ -19,10 +19,7 @@
     
     CGPoint lastPanLocation;
     
-    __weak IBOutlet UIImageView *imageViewTopUser;
-    __weak IBOutlet UILabel *labelName;
-    __weak IBOutlet UILabel *labelSkill;
-    __weak IBOutlet UIView *viewUser;
+    __weak IBOutlet UICollectionView *collectionViewUsers;
 }
 
 @end
@@ -34,11 +31,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)];
-    [viewUser addGestureRecognizer:tap];
-    
-    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panning:)];
-    [viewUser addGestureRecognizer:pan];
+    //UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panning:)];
+    //[viewUser addGestureRecognizer:pan];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -84,7 +78,67 @@
     }];
 }
 
--(void)tapped:(UITapGestureRecognizer *)tap
+-(void)panning:(UIPanGestureRecognizer *)pan
+{
+    switch (pan.state) {
+        case UIGestureRecognizerStateBegan:
+            lastPanLocation = [pan locationInView:self.view];
+            break;
+            
+        case UIGestureRecognizerStateEnded:
+            [self gestureEnded];
+            break;
+            
+        default:
+            break;
+    }
+    
+    CGPoint currentLocation = [pan locationInView:self.view];
+    //viewUser.layer.transform = CATransform3DTranslate(viewUser.layer.transform, currentLocation.x - lastPanLocation.x, currentLocation.y - lastPanLocation.y, 0);
+    
+    lastPanLocation = currentLocation;
+}
+
+-(void)gestureEnded
+{
+    /*
+    if (lastPanLocation.x > 200)
+    {
+        //Networked
+        [UIView animateWithDuration:0.3 animations:^{
+            //go back
+            viewUser.layer.transform = CATransform3DTranslate(viewUser.layer.transform, 400, 0, 0);
+            [self.view layoutSubviews];
+        } completion:^(BOOL finished) {
+            viewUser.layer.transform = CATransform3DIdentity;
+            [self popTopUserWithAction:LUActionNetwork];
+        }];
+    }else if (lastPanLocation.x < 120)
+    {
+        //Canceled
+        [UIView animateWithDuration:0.3 animations:^{
+            //go back
+            viewUser.layer.transform = CATransform3DTranslate(viewUser.layer.transform, -400, 0, 0);
+            [self.view layoutSubviews];
+        } completion:^(BOOL finished) {
+            viewUser.layer.transform = CATransform3DIdentity;
+            [self popTopUserWithAction:LUActionDiscard];
+        }];
+    }else{
+        //Inaction
+        [UIView animateWithDuration:0.2 animations:^{
+            //go back
+            viewUser.layer.transform = CATransform3DIdentity;
+            [self.view layoutSubviews];
+        } completion:^(BOOL finished) {
+            viewUser.layer.transform = CATransform3DIdentity;
+        }];
+    }
+     
+     */
+}
+
+-(void)popTopUserWithAction:(LUAction)action
 {
     if (usersNearby.count > 1)
     {
@@ -98,67 +152,15 @@
     }
 }
 
--(void)panning:(UIPanGestureRecognizer *)pan
-{
-    switch (pan.state) {
-        case UIGestureRecognizerStateBegan:
-            lastPanLocation = [pan locationInView:self.view];
-            break;
-        
-            
-        case UIGestureRecognizerStateEnded:
-            [self gestureEnded];
-            break;
-            
-        default:
-            break;
-    }
-    
-    CGPoint currentLocation = [pan locationInView:self.view];
-    viewUser.layer.transform = CATransform3DTranslate(viewUser.layer.transform, currentLocation.x - lastPanLocation.x, currentLocation.y - lastPanLocation.y, 0);
-    
-    lastPanLocation = currentLocation;
-}
-
--(void)gestureEnded
-{
-    if (lastPanLocation.x > 200)
-    {
-        //Networked
-        [UIView animateWithDuration:0.3 animations:^{
-            //go back
-            viewUser.layer.transform = CATransform3DMakeTranslation(400, lastPanLocation.y, 0);
-            [self.view layoutSubviews];
-        } completion:^(BOOL finished) {
-            viewUser.layer.transform = CATransform3DIdentity;
-        }];
-    }else if (lastPanLocation.x < 120)
-    {
-        //Canceled
-        [UIView animateWithDuration:0.3 animations:^{
-            //go back
-            viewUser.layer.transform = CATransform3DMakeTranslation(-400, lastPanLocation.y, 0);
-            [self.view layoutSubviews];
-        } completion:^(BOOL finished) {
-            viewUser.layer.transform = CATransform3DIdentity;
-        }];
-    }else{
-        //Inaction
-        [UIView animateWithDuration:0.2 animations:^{
-            //go back
-            viewUser.layer.transform = CATransform3DIdentity;
-            [self.view layoutSubviews];
-        } completion:^(BOOL finished) {
-            viewUser.layer.transform = CATransform3DIdentity;
-        }];
-    }
-}
-
 -(void)updateStack
 {
+    /*
     PFUser *topUser = usersNearby[0];
     labelName.text = [NSString stringWithFormat:@"%@ %@", topUser[@"LIProfile"][@"firstName"], topUser[@"LIProfile"][@"lastName"]];
     labelSkill.text = topUser[@"LIProfile"][@"industry"];
+     */
+    
+    [collectionViewUsers reloadData];
 }
 
 -(void)userLocationAndInfoUpdateCompletion:(void(^)(void))block
@@ -195,6 +197,27 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"userCell" forIndexPath:indexPath];
+    
+    PFUser *user = usersNearby[indexPath.row];
+    
+    UIImageView *pic = (UIImageView *)[cell viewWithTag:100];
+    UILabel *name = (UILabel *)[cell viewWithTag:200];
+    UILabel *skill = (UILabel *)[cell viewWithTag:300];
+    
+    name.text = [NSString stringWithFormat:@"%@ %@", user[@"LIProfile"][@"firstName"], user[@"LIProfile"][@"lastName"]];
+    skill.text = user[@"LIProfile"][@"industry"];
+    
+    return cell;
+}
+
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return usersNearby.count;
 }
 
 @end

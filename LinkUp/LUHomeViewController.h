@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum
+{
+    LUActionNetwork,
+    LUActionDiscard,
+} LUAction;
+
 @interface LUHomeViewController : UIViewController
 
 @end
